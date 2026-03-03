@@ -1,0 +1,27 @@
+# Claude context (keep local)
+.claude/
+
+# Environment files
+.env
+.env.local
+
+# Dependencies
+node_modules/
+bin/
+obj/
+
+# Build outputs
+dist/
+build/
+*.dll
+*.exe
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
