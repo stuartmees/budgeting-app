@@ -20,6 +20,7 @@ builder.Services.AddScoped<ISignUpInvitesRepository, SignUpInvitesRepository>();
 // Services
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<ISignUpInvitesService, SignUpInvitesService>();
+builder.Services.AddScoped<IViewsService, ViewsService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

@@ -41,7 +41,8 @@ export default function AuthCallback() {
             return;
           }
 
-          // Clear pending registration
+          const data = await response.json();
+          sessionStorage.setItem('currentUser', JSON.stringify(data.user));
           sessionStorage.removeItem('pendingRegistration');
           navigate('/home');
         } else {
@@ -60,6 +61,8 @@ export default function AuthCallback() {
             return;
           }
 
+          const data = await response.json();
+          sessionStorage.setItem('currentUser', JSON.stringify(data.user));
           navigate('/home');
         }
       } catch {
