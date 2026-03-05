@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
-export default function RegisterPage() {
+const RegisterPage = () => {
   const { loginWithRedirect } = useAuth0();
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
@@ -120,4 +120,6 @@ export default function RegisterPage() {
       </div>
     </div>
   );
-}
+};
+
+export default RegisterPage;

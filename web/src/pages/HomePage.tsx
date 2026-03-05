@@ -10,7 +10,7 @@ interface User {
   createdAt: string;
 }
 
-export default function HomePage() {
+const HomePage = () => {
   const { logout } = useAuth0();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -114,4 +114,6 @@ export default function HomePage() {
       )}
     </div>
   );
-}
+};
+
+export default HomePage;

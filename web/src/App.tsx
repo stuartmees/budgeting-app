@@ -5,7 +5,7 @@ import RegisterPage from './pages/Auth/RegisterPage';
 import AuthCallback from './pages/Auth/AuthCallback';
 import HomePage from './pages/HomePage';
 
-function ProtectedRoute({ children }: { children: React.ReactNode }) {
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
@@ -17,9 +17,9 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   }
 
   return <>{children}</>;
-}
+};
 
-function PublicRoute({ children }: { children: React.ReactNode }) {
+const PublicRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
@@ -38,9 +38,9 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
   }
 
   return <>{children}</>;
-}
+};
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -51,6 +51,6 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

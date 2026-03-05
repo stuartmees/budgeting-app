@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 
-export default function AuthCallback() {
+const AuthCallback = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const navigate = useNavigate();
   const [error, setError] = useState('');
@@ -90,4 +90,6 @@ export default function AuthCallback() {
   }
 
   return <div>Completing authentication...</div>;
-}
+};
+
+export default AuthCallback;
