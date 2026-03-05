@@ -28,9 +28,9 @@ export default function PreAuthPage() {
 
       <div className="flex gap-4">
         <Link to="/register">
-          <Button className="hover:bg-primary/80">Register</Button>
+          <Button className="hover:bg-primary/80 font-[425] tracking-wide">Register</Button>
         </Link>
-        <Button variant="outline" onClick={handleSignIn} className="text-primary border-primary/50 hover:bg-primary/15 hover:text-primary">
+        <Button variant="outline" onClick={handleSignIn} className="text-primary border-primary/50 hover:bg-primary/15 hover:text-primary font-[425] tracking-wide">
           Sign In
         </Button>
       </div>

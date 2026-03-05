@@ -58,41 +58,41 @@ export default function RegisterPage() {
         </h1>
       </div>
       <div className="flex-1 flex flex-col items-center justify-center p-8">
-      <h2 className="text-3xl font-bold mb-4">Register</h2>
-      <p className="text-muted-foreground mb-8">
+      <h2 className="text-3xl font-bold mb-8">Register</h2>
+      <p className="text-muted-foreground mb-6 text-center">
         Enter the email address and invite code you were invited with.
       </p>
 
       <div className="w-full max-w-sm space-y-4">
         <Input
           type="email"
-          placeholder="Email"
+          placeholder="Email . . ."
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="text-center"
+          className="text-center bg-white placeholder:text-gray-400 placeholder:font-extralight border-transparent focus-visible:ring-0 focus-visible:border-gray-400"
         />
         <Input
           type="text"
-          placeholder="Invite Code"
+          placeholder="Invite Code . . ."
           value={inviteCode}
           onChange={(e) => setInviteCode(e.target.value)}
-          className="text-center"
+          className="text-center bg-white placeholder:text-gray-400 placeholder:font-extralight border-transparent focus-visible:ring-0 focus-visible:border-gray-400"
         />
 
-        <p className="text-sm text-muted-foreground text-center">
+        <p className="text-muted-foreground text-center mt-6 whitespace-nowrap">
           Give us a display name you'd like us to refer to you as.
         </p>
         <Input
           type="text"
-          placeholder="Display Name"
+          placeholder="Display Name . . ."
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
-          className="text-center"
+          className="text-center bg-white placeholder:text-gray-400 placeholder:font-extralight border-transparent focus-visible:ring-0 focus-visible:border-gray-400"
         />
 
         {error && <p className="text-red-500 text-sm">{error}</p>}
 
-        <Button onClick={handleValidateInvite} className="w-full hover:bg-primary/80">
+        <Button onClick={handleValidateInvite} className="w-full hover:bg-primary/80 font-[425] tracking-wide mt-6">
           Continue
         </Button>
 
