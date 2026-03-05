@@ -2,7 +2,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from '@/components/ui/button';
 
-const PreAuthPage = () => {
+const LandingPage = () => {
   const { loginWithRedirect } = useAuth0();
   const [searchParams] = useSearchParams();
   const error = searchParams.get('error');
@@ -38,4 +38,4 @@ const PreAuthPage = () => {
   );
 };
 
-export default PreAuthPage;
+export default LandingPage;
