@@ -15,6 +15,7 @@ export default function HomePage() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
     const fetchHomepage = async () => {
@@ -48,7 +49,10 @@ export default function HomePage() {
   }, []);
 
   const handleSetupBudget = () => {
-    alert("Hang on, mate. We've not got that far yet!");
+    setShowMessage(true);
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 5000);
   };
 
   const handleLogout = () => {
@@ -100,7 +104,14 @@ export default function HomePage() {
         <Button onClick={handleSetupBudget} className="hover:bg-primary/80">
           Set up your first monthly budget...
         </Button>
+
       </div>
+
+      {showMessage && (
+        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 px-6 py-4 bg-primary/15 rounded-md">
+          <p className="text-primary text-center">Hang on, mate. We've not got that far yet!</p>
+        </div>
+      )}
     </div>
   );
 }
