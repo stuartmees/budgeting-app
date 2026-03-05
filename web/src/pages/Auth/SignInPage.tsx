@@ -18,9 +18,14 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8">
-      <h1 className="text-3xl font-bold mb-4">Budgeteer</h1>
-      <p className="text-muted-foreground mb-8">Tracky your monthy spending in real time.</p>
+    <div className="min-h-screen flex flex-col">
+      <div className="w-full bg-black py-4 px-8">
+        <h1 className="text-2xl font-bold text-white text-center md:text-right">
+          Budgeteer
+        </h1>
+      </div>
+      <div className="flex-1 flex flex-col items-center justify-center p-8">
+      <p className="text-muted-foreground mb-8">Track your monthly spending in real time.</p>
 
       {error === 'not-found' && (
         <p className="text-red-500 mb-4">
@@ -44,6 +49,7 @@ export default function SignInPage() {
             Back
           </Link>
         </p>
+      </div>
       </div>
     </div>
   );

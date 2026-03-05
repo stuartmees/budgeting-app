@@ -51,8 +51,14 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8">
-      <h1 className="text-3xl font-bold mb-4">Register</h1>
+    <div className="min-h-screen flex flex-col">
+      <div className="w-full bg-black py-4 px-8">
+        <h1 className="text-2xl font-bold text-white text-center md:text-right">
+          Budgeteer
+        </h1>
+      </div>
+      <div className="flex-1 flex flex-col items-center justify-center p-8">
+      <h2 className="text-3xl font-bold mb-4">Register</h2>
       <p className="text-muted-foreground mb-8">
         Enter the email address and invite code you were invited with.
       </p>
@@ -98,6 +104,7 @@ export default function RegisterPage() {
             Back
           </Link>
         </p>
+      </div>
       </div>
     </div>
   );
