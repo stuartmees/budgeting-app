@@ -22,6 +22,12 @@ public class UsersService : IUsersService
         return await _usersRepository.GetByOktaIdAsync(oktaId);
     }
 
+    public async Task<User?> GetByAuth0IdAsync(string auth0Id)
+    {
+        // Auth0 ID is stored in the okta_id column (generic external auth ID)
+        return await _usersRepository.GetByOktaIdAsync(auth0Id);
+    }
+
     public async Task<User?> GetByEmailAsync(string email)
     {
         return await _usersRepository.GetByEmailAsync(email);

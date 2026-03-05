@@ -8,10 +8,12 @@ namespace BudgetingApp.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly ISignUpInvitesService _signUpInvitesService;
+    private readonly IUsersService _usersService;
 
-    public AuthController(ISignUpInvitesService signUpInvitesService)
+    public AuthController(ISignUpInvitesService signUpInvitesService, IUsersService usersService)
     {
         _signUpInvitesService = signUpInvitesService;
+        _usersService = usersService;
     }
 
     [HttpPost("validate-invite")]
@@ -23,10 +25,62 @@ public class AuthController : ControllerBase
 
         return Ok(new { email = invite.Email });
     }
+
+    [HttpPost("complete-registration")]
+    public async Task<IActionResult> CompleteRegistration([FromBody] CompleteRegistrationRequest request)
+    {
+        // Check if user already exists
+        var existingUser = await _usersService.GetByAuth0IdAsync(request.Auth0Id);
+        if (existingUser != null)
+        {
+            return Ok(new { user = existingUser, isNew = false });
+        }
+
+        // Validate invite again
+        var invite = await _signUpInvitesService.ValidateInviteAsync(request.Email, request.InviteCode);
+        if (invite == null)
+            return BadRequest(new { error = "Invalid or expired invite" });
+
+        // Create user
+        var user = await _usersService.CreateUserAsync(request.Auth0Id, request.Email, request.DisplayName);
+
+        // Mark invite as used
+        await _signUpInvitesService.MarkInviteAsUsedAsync(invite.Id);
+
+        return Ok(new { user, isNew = true });
+    }
+
+    [HttpPost("get-or-create-user")]
+    public async Task<IActionResult> GetOrCreateUser([FromBody] GetOrCreateUserRequest request)
+    {
+        // Check if user already exists
+        var existingUser = await _usersService.GetByAuth0IdAsync(request.Auth0Id);
+        if (existingUser != null)
+        {
+            return Ok(new { user = existingUser, isNew = false });
+        }
+
+        // User doesn't exist - they need to register with an invite
+        return NotFound(new { error = "User not found. Please register with an invite code." });
+    }
 }
 
 public class ValidateInviteRequest
 {
     public required string Email { get; set; }
     public required string Code { get; set; }
+}
+
+public class CompleteRegistrationRequest
+{
+    public required string Auth0Id { get; set; }
+    public required string Email { get; set; }
+    public required string DisplayName { get; set; }
+    public required string InviteCode { get; set; }
+}
+
+public class GetOrCreateUserRequest
+{
+    public required string Auth0Id { get; set; }
+    public required string Email { get; set; }
 }

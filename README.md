@@ -2,12 +2,93 @@
 
 A personal budget management web application for tracking monthly and weekly budgets with real-time spending tracking.
 
+## Quick Setup Guide
+
+### Automated Setup (Recommended)
+
+```bash
+./setup.sh
+```
+
+This script installs dependencies, creates the database, and prompts for secrets.
+
+### Manual Setup
+
+#### Prerequisites
+- Node.js (v18+)
+- .NET 8 SDK
+- PostgreSQL 16
+
+#### 1. Clone and Install
+
+```bash
+git clone <repo-url>
+cd budgeting-app
+
+# Frontend
+cd web && npm install
+
+# Backend
+cd ../Server && dotnet restore
+```
+
+#### 2. Database Setup
+
+```bash
+# Create PostgreSQL database and user
+psql -d postgres -c "CREATE USER budgeting_app_admin WITH PASSWORD '<password>';"
+createdb budgeting_app
+psql -d postgres -c "GRANT ALL PRIVILEGES ON DATABASE budgeting_app TO budgeting_app_admin;"
+
+# Run migrations
+psql -d budgeting_app -f Server/Sql/001_InitialSchema.sql
+psql -d budgeting_app -f Server/Sql/002_SignUpInvites.sql
+
+# Grant table permissions
+psql -d budgeting_app -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO budgeting_app_admin; GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO budgeting_app_admin; GRANT ALL ON SCHEMA public TO budgeting_app_admin;"
+```
+
+#### 3. Configure Secrets
+
+Get the following from the app developer admin or create your own Auth0 tenant:
+- Auth0 Domain, Client ID, Client Secret
+- Database password
+
+**Backend secrets:**
+```bash
+cd Server
+dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=localhost;Database=budgeting_app;Username=budgeting_app_admin;Password=<password>"
+dotnet user-secrets set "Auth0:Domain" "<domain>.auth0.com"
+dotnet user-secrets set "Auth0:ClientId" "<client-id>"
+dotnet user-secrets set "Auth0:ClientSecret" "<client-secret>"
+```
+
+**Frontend env:** Copy `web/.env.example` to `web/.env` and fill in values:
+```
+VITE_AUTH0_DOMAIN=<domain>.auth0.com
+VITE_AUTH0_CLIENT_ID=<client-id>
+```
+
+#### 4. Run
+
+```bash
+# Terminal 1 - Backend
+cd Server && dotnet run
+
+# Terminal 2 - Frontend
+cd web && npm run dev
+```
+
+App runs at http://localhost:5173
+
+---
+
 ## Tech Stack
 
 - **Frontend:** React TypeScript + Redux (in `/web`)
 - **Backend:** .NET 8 API with Dapper (in `/Server`)
 - **Database:** PostgreSQL
-- **Authentication:** Okta (OAuth 2.0 / OIDC)
+- **Authentication:** Auth0 (OAuth 2.0 / OIDC)
 
 ## Project Structure
 
