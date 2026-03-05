@@ -56,9 +56,14 @@ export default function HomePage() {
     logout({ logoutParams: { returnTo: window.location.origin } });
   };
 
-  const Banner = () => (
-    <div className="w-full bg-black py-4 px-8">
-      <h1 className="text-2xl font-bold text-white text-center md:text-right">
+  const Banner = ({ showLogout = false }: { showLogout?: boolean }) => (
+    <div className="w-full bg-black py-4 px-8 flex items-center relative">
+      {showLogout && (
+        <button onClick={handleLogout} className="text-white text-sm hover:underline absolute left-8">
+          Log out
+        </button>
+      )}
+      <h1 className="text-2xl font-bold text-white text-center md:text-right w-full">
         Budgeteer
       </h1>
     </div>
@@ -76,10 +81,9 @@ export default function HomePage() {
   if (error) {
     return (
       <div className="min-h-screen flex flex-col">
-        <Banner />
+        <Banner showLogout />
         <div className="flex-1 flex flex-col items-center justify-center">
           <p className="text-red-500 mb-4">{error}</p>
-          <Button variant="outline" onClick={handleLogout}>Log Out</Button>
         </div>
       </div>
     );
@@ -87,18 +91,14 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Banner />
+      <Banner showLogout />
       <div className="flex-1 flex flex-col items-center justify-center p-8">
         <h2 className="text-3xl font-bold mb-8">
           Hi, {user?.displayName || 'User'}!
         </h2>
 
-        <Button onClick={handleSetupBudget} className="mb-4">
+        <Button onClick={handleSetupBudget}>
           Set up your first monthly budget...
-        </Button>
-
-        <Button variant="outline" onClick={handleLogout}>
-          Log Out
         </Button>
       </div>
     </div>
