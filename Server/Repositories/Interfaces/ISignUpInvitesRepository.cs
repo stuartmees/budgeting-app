@@ -1,6 +1,6 @@
 using BudgetingApp.Models.Entities;
 
-namespace BudgetingApp.Repositories;
+namespace BudgetingApp.Repositories.Interfaces;
 
 public interface ISignUpInvitesRepository
 {

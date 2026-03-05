@@ -1,5 +1,5 @@
 using BudgetingApp.Models.DTOs.Requests;
-using BudgetingApp.Services;
+using BudgetingApp.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BudgetingApp.Controllers;

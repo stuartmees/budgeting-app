@@ -1,6 +1,8 @@
 using BudgetingApp.Infrastructure;
 using BudgetingApp.Repositories;
+using BudgetingApp.Repositories.Interfaces;
 using BudgetingApp.Services;
+using BudgetingApp.Services.Interfaces;
 using Dapper;
 
 // Configure Dapper to map snake_case columns to PascalCase properties

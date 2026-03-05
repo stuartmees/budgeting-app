@@ -1,14 +1,13 @@
 using BudgetingApp.Models.Entities;
 
-namespace BudgetingApp.Services;
+namespace BudgetingApp.Repositories.Interfaces;
 
-public interface IUsersService
+public interface IUsersRepository
 {
     Task<User?> GetByIdAsync(int id);
     Task<User?> GetByOktaIdAsync(string oktaId);
-    Task<User?> GetByAuth0IdAsync(string auth0Id);
     Task<User?> GetByEmailAsync(string email);
-    Task<User> CreateUserAsync(string oktaId, string email, string? displayName);
+    Task<User> CreateAsync(User user);
     Task<User> UpdateAsync(User user);
     Task<bool> DeleteAsync(int id);
 }

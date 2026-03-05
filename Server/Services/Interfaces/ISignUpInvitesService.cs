@@ -1,6 +1,6 @@
 using BudgetingApp.Models.Entities;
 
-namespace BudgetingApp.Services;
+namespace BudgetingApp.Services.Interfaces;
 
 public interface ISignUpInvitesService
 {
