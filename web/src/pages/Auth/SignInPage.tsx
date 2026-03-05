@@ -1,5 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 export default function SignInPage() {
   const { loginWithRedirect } = useAuth0();
@@ -17,24 +18,33 @@ export default function SignInPage() {
   };
 
   return (
-    <div>
-      <h1>Sign In</h1>
-      <p>Sign in to your account.</p>
+    <div className="min-h-screen flex flex-col items-center justify-center p-8">
+      <h1 className="text-3xl font-bold mb-4">Budgeteer</h1>
+      <p className="text-muted-foreground mb-8">Tracky your monthy spending in real time.</p>
 
       {error === 'not-found' && (
-        <p style={{ color: 'red' }}>
+        <p className="text-red-500 mb-4">
           Sorry, can't match those details to a Budgeteer account!
         </p>
       )}
 
-      <button onClick={handleSignIn}>Sign In with Auth0</button>
+      <div className="w-full max-w-sm space-y-4">
+        <Button onClick={handleSignIn} className="w-full">
+          Sign In
+        </Button>
 
-      <p>
-        Don't have an account? <Link to="/register">Register</Link>
-      </p>
-      <p>
-        <Link to="/">Back</Link>
-      </p>
+        <p className="text-sm text-center text-muted-foreground">
+          Don't have an account?{' '}
+          <Link to="/register" className="text-primary underline">
+            Register
+          </Link>
+        </p>
+        <p className="text-sm text-center">
+          <Link to="/" className="text-muted-foreground underline">
+            Back
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }

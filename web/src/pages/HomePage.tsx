@@ -72,7 +72,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-8">
       <h1 className="text-3xl font-bold mb-8">
-        Welcome to Budgeteer, {user?.displayName || 'User'}!
+        Hi, {user?.displayName || 'User'}!
       </h1>
 
       <Button onClick={handleSetupBudget} className="mb-4">

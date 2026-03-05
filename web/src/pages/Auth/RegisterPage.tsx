@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export default function RegisterPage() {
   const { loginWithRedirect } = useAuth0();
@@ -49,45 +51,54 @@ export default function RegisterPage() {
   };
 
   return (
-    <div>
-      <h1>Register</h1>
-      <p>Enter the email addredd and invite code you were ivited with.</p>
-      <div>
-        <input
+    <div className="min-h-screen flex flex-col items-center justify-center p-8">
+      <h1 className="text-3xl font-bold mb-4">Register</h1>
+      <p className="text-muted-foreground mb-8">
+        Enter the email address and invite code you were invited with.
+      </p>
+
+      <div className="w-full max-w-sm space-y-4">
+        <Input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-      </div>
-      <div>
-        <input
+        <Input
           type="text"
           placeholder="Invite Code"
           value={inviteCode}
           onChange={(e) => setInviteCode(e.target.value)}
         />
-      </div>
-      <div>
-      <p>Gives us a display name you like us to refer to you as.</p>
-        <input
+
+        <p className="text-sm text-muted-foreground">
+          Give us a display name you'd like us to refer to you as.
+        </p>
+        <Input
           type="text"
           placeholder="Display Name"
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
         />
+
+        {error && <p className="text-red-500 text-sm">{error}</p>}
+
+        <Button onClick={handleValidateInvite} className="w-full">
+          Continue
+        </Button>
+
+        <p className="text-sm text-center text-muted-foreground">
+          Already have an account?{' '}
+          <Link to="/sign-in" className="text-primary underline">
+            Sign In
+          </Link>
+        </p>
+        <p className="text-sm text-center">
+          <Link to="/" className="text-muted-foreground underline">
+            Back
+          </Link>
+        </p>
       </div>
-
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
-      <button onClick={handleValidateInvite}>Continue</button>
-
-      <p>
-        Already have an account? <Link to="/sign-in">Sign In</Link>
-      </p>
-      <p>
-        <Link to="/">Back</Link>
-      </p>
     </div>
   );
 }

@@ -27,13 +27,15 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
     return <div>Loading...</div>;
   }
 
-  // If authenticated, check if we need to complete registration
+  // If authenticated, go through callback to set up session (if not already done)
   if (isAuthenticated) {
-    const pendingReg = sessionStorage.getItem('pendingRegistration');
-    if (pendingReg) {
-      return <Navigate to="/callback" replace />;
+    const currentUser = sessionStorage.getItem('currentUser');
+    if (currentUser) {
+      // Session already set up, go to home
+      return <Navigate to="/home" replace />;
     }
-    return <Navigate to="/home" replace />;
+    // Need to go through callback to set up session
+    return <Navigate to="/callback" replace />;
   }
 
   return <>{children}</>;
