@@ -67,7 +67,7 @@ export default function HomePage() {
           Log out
         </button>
       )}
-      <h1 className="text-2xl font-bold text-white text-center md:text-right w-full" style={{ fontFamily: "'Libre Baskerville', serif" }}>
+      <h1 className="text-4xl font-bold text-white text-center md:text-right w-full tracking-wider" style={{ fontFamily: "'Libre Baskerville', serif" }}>
         Budgeteer
       </h1>
     </div>

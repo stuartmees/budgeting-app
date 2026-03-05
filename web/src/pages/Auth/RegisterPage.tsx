@@ -27,7 +27,7 @@ export default function RegisterPage() {
       });
 
       if (!response.ok) {
-        setError("Sorry, doesn't look like you've been invited to Budgeteer yet!");
+        setError("Sorry, you've either not been invited or your email or code is wrong");
         return;
       }
 
@@ -53,13 +53,13 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <div className="w-full bg-primary py-4 px-8">
-        <h1 className="text-2xl font-bold text-white text-center md:text-right" style={{ fontFamily: "'Libre Baskerville', serif" }}>
+        <h1 className="text-4xl font-bold text-white text-center md:text-right tracking-wider" style={{ fontFamily: "'Libre Baskerville', serif" }}>
           Budgeteer
         </h1>
       </div>
       <div className="flex-1 flex flex-col items-center justify-center p-8">
-      <h2 className="text-3xl font-bold mb-8">Register</h2>
-      <p className="text-muted-foreground mb-6 text-center">
+      <h2 className="text-4xl font-bold mb-6 tracking-wide" style={{ fontFamily: "'Libre Baskerville', serif" }}>Register</h2>
+      <p className="text-gray-500 text-center mt-6 mb-4 whitespace-nowrap text-base md:text-lg">
         Enter the email address and invite code you were invited with.
       </p>
 
@@ -69,30 +69,36 @@ export default function RegisterPage() {
           placeholder="Email . . ."
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="text-center bg-white placeholder:text-gray-400 placeholder:font-extralight border-transparent focus-visible:ring-0 focus-visible:border-gray-400"
+          className="text-center bg-white placeholder:text-[#b5bbc3] placeholder:font-extralight border-transparent focus-visible:ring-0 focus-visible:border-gray-400 text-sm md:text-[0.925rem]"
         />
         <Input
           type="text"
-          placeholder="Invite Code . . ."
+          placeholder="Invite code . . ."
           value={inviteCode}
           onChange={(e) => setInviteCode(e.target.value)}
-          className="text-center bg-white placeholder:text-gray-400 placeholder:font-extralight border-transparent focus-visible:ring-0 focus-visible:border-gray-400"
+          className="text-center bg-white placeholder:text-[#b5bbc3] placeholder:font-extralight border-transparent focus-visible:ring-0 focus-visible:border-gray-400 text-sm md:text-[0.925rem]"
         />
 
-        <p className="text-muted-foreground text-center mt-6 whitespace-nowrap">
-          Give us a display name you'd like us to refer to you as.
-        </p>
+        <div className="flex justify-center w-full mt-6">
+          <p className="text-gray-500 whitespace-nowrap text-base md:text-lg">
+            Give us a display name you'd like us to refer to you as.
+          </p>
+        </div>
         <Input
           type="text"
-          placeholder="Display Name . . ."
+          placeholder="Display name . . ."
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
-          className="text-center bg-white placeholder:text-gray-400 placeholder:font-extralight border-transparent focus-visible:ring-0 focus-visible:border-gray-400"
+          className="text-center bg-white placeholder:text-[#b5bbc3] placeholder:font-extralight border-transparent focus-visible:ring-0 focus-visible:border-gray-400 text-sm md:text-[0.925rem]"
         />
 
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        {error && (
+          <div className="flex justify-center w-full">
+            <p className="text-red-500 text-xs md:text-sm whitespace-nowrap">{error}</p>
+          </div>
+        )}
 
-        <Button onClick={handleValidateInvite} className="w-full hover:bg-primary/80 font-[425] tracking-wide mt-6">
+        <Button onClick={handleValidateInvite} className="w-full hover:bg-primary/80 mt-6 text-sm md:text-base font-normal tracking-normal">
           Continue
         </Button>
 
