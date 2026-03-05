@@ -1,5 +1,5 @@
 using BudgetingApp.Infrastructure;
-using BudgetingApp.Models;
+using BudgetingApp.Models.Entities;
 using Dapper;
 
 namespace BudgetingApp.Repositories;

@@ -1,4 +1,4 @@
-namespace BudgetingApp.Models;
+namespace BudgetingApp.Models.Entities;
 
 public class User
 {

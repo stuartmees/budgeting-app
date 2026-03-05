@@ -1,4 +1,4 @@
-using BudgetingApp.Models;
+using BudgetingApp.Models.Entities;
 
 namespace BudgetingApp.Repositories;
 

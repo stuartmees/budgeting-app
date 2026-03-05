@@ -1,3 +1,4 @@
+using BudgetingApp.Models.DTOs.Requests;
 using BudgetingApp.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,16 +38,4 @@ public class AuthController : ControllerBase
 
         return NotFound(new { error = "User not found. Please register with an invite code." });
     }
-}
-
-public class ValidateInviteRequest
-{
-    public required string Email { get; set; }
-    public required string Code { get; set; }
-}
-
-public class LookupUserRequest
-{
-    public required string Auth0Id { get; set; }
-    public required string Email { get; set; }
 }

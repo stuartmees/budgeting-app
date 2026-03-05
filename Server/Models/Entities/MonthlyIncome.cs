@@ -1,6 +1,6 @@
-namespace BudgetingApp.Models;
+namespace BudgetingApp.Models.Entities;
 
-public class MonthlyOutgoing
+public class MonthlyIncome
 {
     public int Id { get; set; }
     public int MonthId { get; set; }

@@ -1,4 +1,4 @@
-using BudgetingApp.Models;
+using BudgetingApp.Models.DTOs.Requests;
 using BudgetingApp.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -74,18 +74,4 @@ public class UsersController : ControllerBase
 
         return NoContent();
     }
-}
-
-public class CreateUserRequest
-{
-    public required string Auth0Id { get; set; }
-    public required string Email { get; set; }
-    public required string DisplayName { get; set; }
-    public required string InviteCode { get; set; }
-}
-
-public class UpdateUserRequest
-{
-    public string? Email { get; set; }
-    public string? DisplayName { get; set; }
 }
