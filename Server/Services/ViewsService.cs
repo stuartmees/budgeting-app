@@ -15,7 +15,7 @@ public class ViewsService : IViewsService
 
     public async Task<User?> GetHomepageAsync(int userId)
     {
-        // TODO: Fetch user's budgets, months, weekly summaries etc. for homepage display
+        // TODO: Fetch user's budgets, months, weekly summaries etc. to return to homepage to display eventually
         var user = await _usersRepository.GetByIdAsync(userId);
         return user;
     }
