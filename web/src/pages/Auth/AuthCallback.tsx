@@ -24,7 +24,7 @@ export default function AuthCallback() {
           // New user registration flow
           const { displayName, email, inviteCode } = JSON.parse(pendingReg);
 
-          const response = await fetch('/api/auth/complete-registration', {
+          const response = await fetch('/api/auth/users', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -46,7 +46,7 @@ export default function AuthCallback() {
           navigate('/home');
         } else {
           // Existing user sign-in flow
-          const response = await fetch('/api/auth/get-or-create-user', {
+          const response = await fetch('/api/auth/users/lookup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

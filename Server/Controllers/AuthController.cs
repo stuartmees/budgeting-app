@@ -16,7 +16,7 @@ public class AuthController : ControllerBase
         _usersService = usersService;
     }
 
-    [HttpPost("validate-invite")]
+    [HttpPost("sign-up-invites/validation")]
     public async Task<IActionResult> ValidateInvite([FromBody] ValidateInviteRequest request)
     {
         var invite = await _signUpInvitesService.ValidateInviteAsync(request.Email, request.Code);
@@ -26,8 +26,8 @@ public class AuthController : ControllerBase
         return Ok(new { email = invite.Email });
     }
 
-    [HttpPost("complete-registration")]
-    public async Task<IActionResult> CompleteRegistration([FromBody] CompleteRegistrationRequest request)
+    [HttpPost("users")]
+    public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
     {
         // Check if user already exists
         var existingUser = await _usersService.GetByAuth0IdAsync(request.Auth0Id);
@@ -50,8 +50,8 @@ public class AuthController : ControllerBase
         return Ok(new { user, isNew = true });
     }
 
-    [HttpPost("get-or-create-user")]
-    public async Task<IActionResult> GetOrCreateUser([FromBody] GetOrCreateUserRequest request)
+    [HttpPost("users/lookup")]
+    public async Task<IActionResult> LookupUser([FromBody] LookupUserRequest request)
     {
         // Check if user already exists
         var existingUser = await _usersService.GetByAuth0IdAsync(request.Auth0Id);
@@ -71,7 +71,7 @@ public class ValidateInviteRequest
     public required string Code { get; set; }
 }
 
-public class CompleteRegistrationRequest
+public class CreateUserRequest
 {
     public required string Auth0Id { get; set; }
     public required string Email { get; set; }
@@ -79,7 +79,7 @@ public class CompleteRegistrationRequest
     public required string InviteCode { get; set; }
 }
 
-public class GetOrCreateUserRequest
+public class LookupUserRequest
 {
     public required string Auth0Id { get; set; }
     public required string Email { get; set; }

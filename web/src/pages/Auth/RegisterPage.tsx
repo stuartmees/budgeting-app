@@ -18,7 +18,7 @@ export default function RegisterPage() {
     }
 
     try {
-      const response = await fetch('/api/auth/validate-invite', {
+      const response = await fetch('/api/auth/sign-up-invites/validation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, code: inviteCode }),
@@ -51,16 +51,7 @@ export default function RegisterPage() {
   return (
     <div>
       <h1>Register</h1>
-      <p>Enter your details and invite code to register.</p>
-
-      <div>
-        <input
-          type="text"
-          placeholder="Display Name"
-          value={displayName}
-          onChange={(e) => setDisplayName(e.target.value)}
-        />
-      </div>
+      <p>Enter the email addredd and invite code you were ivited with.</p>
       <div>
         <input
           type="email"
@@ -75,6 +66,15 @@ export default function RegisterPage() {
           placeholder="Invite Code"
           value={inviteCode}
           onChange={(e) => setInviteCode(e.target.value)}
+        />
+      </div>
+      <div>
+      <p>Gives us a display name you like us to refer to you as.</p>
+        <input
+          type="text"
+          placeholder="Display Name"
+          value={displayName}
+          onChange={(e) => setDisplayName(e.target.value)}
         />
       </div>
 
