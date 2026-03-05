@@ -52,8 +52,8 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="w-full bg-black py-4 px-8">
-        <h1 className="text-2xl font-bold text-white text-center md:text-right">
+      <div className="w-full bg-primary py-4 px-8">
+        <h1 className="text-2xl font-bold text-white text-center md:text-right" style={{ fontFamily: "'Libre Baskerville', serif" }}>
           Budgeteer
         </h1>
       </div>
@@ -69,15 +69,17 @@ export default function RegisterPage() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          className="text-center"
         />
         <Input
           type="text"
           placeholder="Invite Code"
           value={inviteCode}
           onChange={(e) => setInviteCode(e.target.value)}
+          className="text-center"
         />
 
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-muted-foreground text-center">
           Give us a display name you'd like us to refer to you as.
         </p>
         <Input
@@ -85,25 +87,26 @@ export default function RegisterPage() {
           placeholder="Display Name"
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
+          className="text-center"
         />
 
         {error && <p className="text-red-500 text-sm">{error}</p>}
 
-        <Button onClick={handleValidateInvite} className="w-full">
+        <Button onClick={handleValidateInvite} className="w-full hover:bg-primary/80">
           Continue
         </Button>
 
         <p className="text-sm text-center text-muted-foreground">
-          Already have an account?{' '}
+          Already have an account?&nbsp;&nbsp;
           <button
             onClick={() => loginWithRedirect({ authorizationParams: { screen_hint: 'login' } })}
-            className="text-primary underline"
+            className="text-primary hover:text-primary/80 cursor-pointer"
           >
             Sign In
           </button>
         </p>
         <p className="text-sm text-center">
-          <Link to="/" className="text-muted-foreground underline">
+          <Link to="/" className="text-primary hover:text-primary/80 cursor-pointer">
             Back
           </Link>
         </p>

@@ -17,7 +17,7 @@ export default function PreAuthPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-8">
-      <h1 className="text-3xl font-bold mb-4">Welcome to Budgeteer</h1>
+      <h1 className="text-3xl font-bold mb-4" style={{ fontFamily: "'Libre Baskerville', serif" }}>Welcome to Budgeteer</h1>
       <p className="text-muted-foreground mb-8">Track your monthly budgets in real time.</p>
 
       {error === 'not-found' && (
@@ -28,9 +28,9 @@ export default function PreAuthPage() {
 
       <div className="flex gap-4">
         <Link to="/register">
-          <Button>Register</Button>
+          <Button className="hover:bg-primary/80">Register</Button>
         </Link>
-        <Button variant="outline" onClick={handleSignIn}>
+        <Button variant="outline" onClick={handleSignIn} className="text-primary border-primary/50 hover:bg-primary/15 hover:text-primary">
           Sign In
         </Button>
       </div>

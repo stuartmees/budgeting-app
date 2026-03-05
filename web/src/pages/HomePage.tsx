@@ -57,13 +57,13 @@ export default function HomePage() {
   };
 
   const Banner = ({ showLogout = false }: { showLogout?: boolean }) => (
-    <div className="w-full bg-black py-4 px-8 flex items-center relative">
+    <div className="w-full bg-primary py-4 px-8 flex items-center relative">
       {showLogout && (
-        <button onClick={handleLogout} className="text-white text-sm hover:underline absolute left-8">
+        <button onClick={handleLogout} className="text-white text-sm absolute left-8 hover:text-white/80">
           Log out
         </button>
       )}
-      <h1 className="text-2xl font-bold text-white text-center md:text-right w-full">
+      <h1 className="text-2xl font-bold text-white text-center md:text-right w-full" style={{ fontFamily: "'Libre Baskerville', serif" }}>
         Budgeteer
       </h1>
     </div>
@@ -93,11 +93,11 @@ export default function HomePage() {
     <div className="min-h-screen flex flex-col">
       <Banner showLogout />
       <div className="flex-1 flex flex-col items-center justify-center p-8">
-        <h2 className="text-3xl font-bold mb-8">
+        <h2 className="text-3xl font-bold mb-8" style={{ fontFamily: "'Libre Baskerville', serif" }}>
           Hi, {user?.displayName || 'User'}!
         </h2>
 
-        <Button onClick={handleSetupBudget}>
+        <Button onClick={handleSetupBudget} className="hover:bg-primary/80">
           Set up your first monthly budget...
         </Button>
       </div>
