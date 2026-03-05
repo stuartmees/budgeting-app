@@ -56,32 +56,51 @@ export default function HomePage() {
     logout({ logoutParams: { returnTo: window.location.origin } });
   };
 
+  const Banner = () => (
+    <div className="w-full bg-black py-4 px-8">
+      <h1 className="text-2xl font-bold text-white text-center md:text-right">
+        Budgeteer
+      </h1>
+    </div>
+  );
+
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Banner />
+        <div className="flex-1 flex items-center justify-center">Loading...</div>
+      </div>
+    );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <p className="text-red-500 mb-4">{error}</p>
-        <Button variant="outline" onClick={handleLogout}>Log Out</Button>
+      <div className="min-h-screen flex flex-col">
+        <Banner />
+        <div className="flex-1 flex flex-col items-center justify-center">
+          <p className="text-red-500 mb-4">{error}</p>
+          <Button variant="outline" onClick={handleLogout}>Log Out</Button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8">
-      <h1 className="text-3xl font-bold mb-8">
-        Hi, {user?.displayName || 'User'}!
-      </h1>
+    <div className="min-h-screen flex flex-col">
+      <Banner />
+      <div className="flex-1 flex flex-col items-center justify-center p-8">
+        <h2 className="text-3xl font-bold mb-8">
+          Hi, {user?.displayName || 'User'}!
+        </h2>
 
-      <Button onClick={handleSetupBudget} className="mb-4">
-        Set up your first monthly budget...
-      </Button>
+        <Button onClick={handleSetupBudget} className="mb-4">
+          Set up your first monthly budget...
+        </Button>
 
-      <Button variant="outline" onClick={handleLogout}>
-        Log Out
-      </Button>
+        <Button variant="outline" onClick={handleLogout}>
+          Log Out
+        </Button>
+      </div>
     </div>
   );
 }
