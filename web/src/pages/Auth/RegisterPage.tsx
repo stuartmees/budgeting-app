@@ -95,9 +95,12 @@ export default function RegisterPage() {
 
         <p className="text-sm text-center text-muted-foreground">
           Already have an account?{' '}
-          <Link to="/sign-in" className="text-primary underline">
+          <button
+            onClick={() => loginWithRedirect({ authorizationParams: { screen_hint: 'login' } })}
+            className="text-primary underline"
+          >
             Sign In
-          </Link>
+          </button>
         </p>
         <p className="text-sm text-center">
           <Link to="/" className="text-muted-foreground underline">

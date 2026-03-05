@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import PreAuthPage from './pages/Auth/PreAuthPage';
 import RegisterPage from './pages/Auth/RegisterPage';
-import SignInPage from './pages/Auth/SignInPage';
 import AuthCallback from './pages/Auth/AuthCallback';
 import HomePage from './pages/HomePage';
 
@@ -47,7 +46,6 @@ function App() {
       <Routes>
         <Route path="/" element={<PublicRoute><PreAuthPage /></PublicRoute>} />
         <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
-        <Route path="/sign-in" element={<PublicRoute><SignInPage /></PublicRoute>} />
         <Route path="/callback" element={<AuthCallback />} />
         <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
       </Routes>
