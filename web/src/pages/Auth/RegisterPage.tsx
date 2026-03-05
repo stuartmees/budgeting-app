@@ -25,7 +25,7 @@ export default function RegisterPage() {
       });
 
       if (!response.ok) {
-        setError('Invalid or expired invite code');
+        setError("Sorry, doesn't look like you've been invited to Budgeteer yet!");
         return;
       }
 
