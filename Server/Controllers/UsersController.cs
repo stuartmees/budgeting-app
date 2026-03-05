@@ -37,7 +37,8 @@ public class UsersController : ControllerBase
             return Ok(new { user = existingUser, isNew = false });
         }
 
-        // Validate invite
+        // Validate invite again (already validated in frontend for UX, but backend must re-check
+        // for security - can't trust frontend, and invite may have been used/expired since)
         var invite = await _signUpInvitesService.ValidateInviteAsync(request.Email, request.InviteCode);
         if (invite == null)
             return BadRequest(new { error = "Invalid or expired invite" });
