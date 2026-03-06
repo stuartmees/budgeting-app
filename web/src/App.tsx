@@ -1,46 +1,11 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import RegisterPage from './pages/Auth/RegisterPage';
 import AuthCallback from './pages/Auth/AuthCallback';
 import HomePage from './pages/HomePage';
 import Layout from './components/Layout';
-import Loading from './components/Loading';
-
-const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const { isAuthenticated, isLoading } = useAuth0();
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (!isAuthenticated) {
-    return <Navigate to="/" replace />;
-  }
-
-  return <>{children}</>;
-};
-
-const PublicRoute = ({ children }: { children: React.ReactNode }) => {
-  const { isAuthenticated, isLoading } = useAuth0();
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  // If authenticated, go through callback to set up session (if not already done)
-  if (isAuthenticated) {
-    const currentUser = sessionStorage.getItem('currentUser');
-    if (currentUser) {
-      // Session already set up, go to home
-      return <Navigate to="/home" replace />;
-    }
-    // Need to go through callback to set up session
-    return <Navigate to="/callback" replace />;
-  }
-
-  return <>{children}</>;
-};
+import ProtectedRoute from './components/routes/ProtectedRoute';
+import PublicRoute from './components/routes/PublicRoute';
 
 const App = () => {
   return (
