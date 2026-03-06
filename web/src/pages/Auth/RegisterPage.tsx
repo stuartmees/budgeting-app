@@ -51,13 +51,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="w-full bg-primary py-4 px-8">
-        <h1 className="text-4xl font-bold text-white text-center md:text-right tracking-wider" style={{ fontFamily: "'Libre Baskerville', serif" }}>
-          Budgeteer
-        </h1>
-      </div>
-      <div className="flex-1 flex flex-col items-center justify-center p-8">
+    <div className="flex-1 flex flex-col items-center justify-center p-8">
       <h2 className="text-4xl font-bold mb-6 tracking-wide" style={{ fontFamily: "'Libre Baskerville', serif" }}>Register</h2>
       <p className="text-gray-500 text-center mt-6 mb-4 whitespace-nowrap text-base md:text-lg">
         Enter the email address and invite code you were invited with.
@@ -116,7 +110,6 @@ const RegisterPage = () => {
             Back
           </Link>
         </p>
-      </div>
       </div>
     </div>
   );
