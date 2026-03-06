@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import type { AppDispatch } from '@/store';
 import { setUser } from '@/store/slices/userSlice';
-import Loading from '@/components/Loading';
+import LoadingIndicator from '@/components/ui/LoadingIndicator';
 
 const AuthCallback = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -83,7 +83,7 @@ const AuthCallback = () => {
   }, [isAuthenticated, isLoading, user, navigate]);
 
   if (isLoading) {
-    return <Loading />;
+    return <LoadingIndicator />;
   }
 
   if (error) {
