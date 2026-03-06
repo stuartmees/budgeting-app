@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import type { AppDispatch } from '@/store';
+import { setUser } from '@/store/slices/userSlice';
 import LoadingPage from '@/pages/common/LoadingPage';
 
 const AuthCallback = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -43,6 +47,7 @@ const AuthCallback = () => {
           }
 
           const data = await response.json();
+          dispatch(setUser(data.user));
           sessionStorage.setItem('currentUser', JSON.stringify(data.user));
           sessionStorage.removeItem('pendingRegistration');
           navigate('/home');
@@ -65,6 +70,7 @@ const AuthCallback = () => {
           }
 
           const data = await response.json();
+          dispatch(setUser(data.user));
           sessionStorage.setItem('currentUser', JSON.stringify(data.user));
           navigate('/home');
         }
