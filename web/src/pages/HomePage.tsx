@@ -11,25 +11,28 @@ const HomePage = () => {
     setShowMessage(true);
     setTimeout(() => {
       setShowMessage(false);
-    }, 5000);
+    }, 3500);
   };
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-8">
-      <h2 className="text-3xl font-bold mb-8" style={{ fontFamily: "'Libre Baskerville', serif" }}>
-        Hi, {user?.displayName || 'User'}!
-      </h2>
+    !!user &&
+      <>
+      <div className="flex-1 flex flex-col items-center justify-center p-8">
+        <h2 className="text-3xl font-bold mb-8" style={{ fontFamily: "'Libre Baskerville', serif" }}>
+          Hi, {user?.displayName || 'User'}!
+        </h2>
 
-      <Button onClick={handleSetupBudget} className="hover:bg-primary/80 text-sm md:text-base font-normal tracking-normal">
-        Set up your first monthly budget...
-      </Button>
+        <Button onClick={handleSetupBudget} className="hover:bg-primary/80 text-sm md:text-base font-normal tracking-normal">
+          Set up your first monthly budget...
+        </Button>
 
-      {showMessage && (
-        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 px-6 py-4 bg-primary/15 rounded-md">
-          <p className="text-primary text-center">Hang on, mate. We've not got that far yet!</p>
-        </div>
-      )}
-    </div>
+        {showMessage && (
+          <div className="absolute bottom-20 left-1/2 -translate-x-1/2 px-6 py-4 bg-primary/15 rounded-md">
+            <p className="text-primary text-center">Hang on, mate. We've not got that far yet!</p>
+          </div>
+        )}
+      </div>
+      </> 
   );
 };
 

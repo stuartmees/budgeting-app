@@ -27,7 +27,7 @@ const RegisterPage = () => {
       });
 
       if (!response.ok) {
-        setError("Sorry, you've either not been invited or your email or code is wrong");
+        setError("Sorry, you you can't register with that email and invite code. Try again!");
         return;
       }
 
