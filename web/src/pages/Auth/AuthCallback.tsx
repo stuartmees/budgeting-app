@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
+import LoadingPage from '@/pages/common/LoadingPage';
 
 const AuthCallback = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -76,7 +77,7 @@ const AuthCallback = () => {
   }, [isAuthenticated, isLoading, user, navigate]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingPage />;
   }
 
   if (error) {

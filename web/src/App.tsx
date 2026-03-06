@@ -4,12 +4,13 @@ import LandingPage from './pages/LandingPage';
 import RegisterPage from './pages/Auth/RegisterPage';
 import AuthCallback from './pages/Auth/AuthCallback';
 import HomePage from './pages/HomePage';
+import LoadingPage from './pages/common/LoadingPage';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingPage />;
   }
 
   if (!isAuthenticated) {
@@ -23,7 +24,7 @@ const PublicRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingPage />;
   }
 
   // If authenticated, go through callback to set up session (if not already done)

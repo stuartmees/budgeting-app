@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from '@/components/ui/button';
+import Banner from '@/components/Banner';
+import LoadingPage from '@/pages/common/LoadingPage';
 
 interface User {
   id: number;
@@ -60,32 +62,14 @@ const HomePage = () => {
     logout({ logoutParams: { returnTo: window.location.origin } });
   };
 
-  const Banner = ({ showLogout = false }: { showLogout?: boolean }) => (
-    <div className="w-full bg-primary py-4 px-8 flex items-center relative">
-      {showLogout && (
-        <button onClick={handleLogout} className="text-white text-sm absolute left-8 hover:text-white/80">
-          Log out
-        </button>
-      )}
-      <h1 className="text-4xl font-bold text-white text-center md:text-right w-full tracking-wider" style={{ fontFamily: "'Libre Baskerville', serif" }}>
-        Budgeteer
-      </h1>
-    </div>
-  );
-
   if (loading) {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <Banner />
-        <div className="flex-1 flex items-center justify-center">Loading...</div>
-      </div>
-    );
+    return <LoadingPage />;
   }
 
   if (error) {
     return (
       <div className="min-h-screen flex flex-col">
-        <Banner showLogout />
+        <Banner showLogout={!!user} onLogout={handleLogout} />
         <div className="flex-1 flex flex-col items-center justify-center">
           <p className="text-red-500 mb-4">{error}</p>
         </div>
@@ -95,13 +79,13 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Banner showLogout />
+      <Banner showLogout onLogout={handleLogout} />
       <div className="flex-1 flex flex-col items-center justify-center p-8">
         <h2 className="text-3xl font-bold mb-8" style={{ fontFamily: "'Libre Baskerville', serif" }}>
           Hi, {user?.displayName || 'User'}!
         </h2>
 
-        <Button onClick={handleSetupBudget} className="hover:bg-primary/80">
+        <Button onClick={handleSetupBudget} className="hover:bg-primary/80 text-sm md:text-base font-normal tracking-normal">
           Set up your first monthly budget...
         </Button>
 
