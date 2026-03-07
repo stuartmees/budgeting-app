@@ -9,12 +9,12 @@ namespace BudgetingApp.Controllers;
 public class UsersController : ControllerBase
 {
     private readonly IUsersService _usersService;
-    private readonly ISignUpInvitesService _signUpInvitesService;
+    private readonly IUserInvitesService _userInvitesService;
 
-    public UsersController(IUsersService usersService, ISignUpInvitesService signUpInvitesService)
+    public UsersController(IUsersService usersService, IUserInvitesService userInvitesService)
     {
         _usersService = usersService;
-        _signUpInvitesService = signUpInvitesService;
+        _userInvitesService = userInvitesService;
     }
 
     [HttpGet("{id}")]
@@ -39,7 +39,7 @@ public class UsersController : ControllerBase
 
         // Validate invite again (already validated in frontend for UX, but backend must re-check
         // for security - can't trust frontend, and invite may have been used/expired since)
-        var invite = await _signUpInvitesService.ValidateInviteAsync(request.Email, request.InviteCode);
+        var invite = await _userInvitesService.ValidateInviteAsync(request.Email, request.InviteCode);
         if (invite == null)
             return BadRequest(new { error = "Invalid or expired invite" });
 
@@ -47,7 +47,7 @@ public class UsersController : ControllerBase
         var user = await _usersService.CreateUserAsync(request.Auth0Id, request.Email, request.DisplayName);
 
         // Mark invite as used
-        await _signUpInvitesService.MarkInviteAsUsedAsync(invite.Id);
+        await _userInvitesService.MarkInviteAsUsedAsync(invite.Id);
 
         return Ok(new { user, isNew = true });
     }

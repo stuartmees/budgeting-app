@@ -20,10 +20,10 @@ const RegisterPage = () => {
     }
 
     try {
-      const response = await fetch('/api/auth/sign-up-invites/validation', {
+      const response = await fetch('/api/auth/user-invites/validation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, code: inviteCode }),
+        body: JSON.stringify({ email, inviteCode }),
       });
 
       if (!response.ok) {

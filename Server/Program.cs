@@ -15,11 +15,11 @@ builder.Services.AddSingleton<IDbConnectionFactory, DbConnectionFactory>();
 
 // Repositories
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
-builder.Services.AddScoped<ISignUpInvitesRepository, SignUpInvitesRepository>();
+builder.Services.AddScoped<IUserInvitesRepository, UserInvitesRepository>();
 
 // Services
 builder.Services.AddScoped<IUsersService, UsersService>();
-builder.Services.AddScoped<ISignUpInvitesService, SignUpInvitesService>();
+builder.Services.AddScoped<IUserInvitesService, UserInvitesService>();
 builder.Services.AddScoped<IViewsService, ViewsService>();
 
 builder.Services.AddControllers();

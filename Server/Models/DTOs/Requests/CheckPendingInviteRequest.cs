@@ -1,7 +1,6 @@
 namespace BudgetingApp.Models.DTOs.Requests;
 
-public class ValidateInviteRequest
+public class CheckPendingInviteRequest
 {
     public required string Email { get; set; }
-    public required string InviteCode { get; set; }
 }
