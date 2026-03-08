@@ -6,7 +6,7 @@ import { REGISTER } from '../constants/routes';
 interface GuestPanelProps {
   title: string;
   subtitle: string;
-  description: string
+  description?: string
 }
 
 const GuestPanel = ({ description, subtitle, title }: GuestPanelProps) => {
