@@ -3,6 +3,7 @@ import LandingPage from './pages/LandingPage';
 import RegisterPage from './pages/Auth/RegisterPage';
 import AuthCallback from './pages/Auth/AuthCallback';
 import HomePage from './pages/HomePage';
+import UserNotFound from './pages/UserNotFound';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/routes/ProtectedRoute';
 import PublicRoute from './components/routes/PublicRoute';
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
           <Route path="/callback" element={<AuthCallback />} />
           <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+          <Route path="/not-found" element={<PublicRoute><UserNotFound /></PublicRoute>} />
         </Route>
       </Routes>
     </BrowserRouter>

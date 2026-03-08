@@ -65,7 +65,7 @@ const AuthCallback = () => {
           if (!response.ok) {
             // Edge case: user authenticated with Auth0 but doesn't exist in our DB
             // (e.g., deleted user, failed registration, or direct Auth0 API call)
-            navigate('/?error=not-found');
+            navigate('/not-found');
             return;
           }
 
