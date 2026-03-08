@@ -18,7 +18,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("user-invites/validation")]
-    public async Task<IActionResult> ValidateInvite([FromBody] ValidateInviteRequest request)
+    public async Task<IActionResult> ValidateInvite([FromBody] UserRegistrationRequest request)
     {
         var invite = await _userInvitesService.ValidateInviteAsync(request.Email, request.InviteCode);
         if (invite == null)
@@ -27,17 +27,14 @@ public class AuthController : ControllerBase
         // Mark the invite as validated so Auth0 Action can verify
         await _userInvitesService.MarkCodeValidatedAsync(invite.Id);
 
-        return Ok(new { email = invite.Email });
+        return Ok(new { id = invite.Id, email = invite.Email });
     }
 
-    [HttpPost("user-invites/check-pending")]
-    public async Task<IActionResult> CheckPendingInvite([FromBody] CheckPendingInviteRequest request)
+    [HttpGet("user-invites/{id}/is-pending")]
+    public async Task<IActionResult> GetInviteIsPending(int id)
     {
-        var hasPending = await _userInvitesService.HasPendingValidationAsync(request.Email);
-        if (!hasPending)
-            return NotFound(new { error = "No pending invite validation found" });
-
-        return Ok(new { valid = true });
+        var isPending = await _userInvitesService.GetIsPendingAsync(id);
+        return Ok(new { isPending });
     }
 
     [HttpPost("users/lookup")]

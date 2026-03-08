@@ -31,18 +31,6 @@ public class UserInvitesRepository : IUserInvitesRepository
             new { Email = email, InviteCode = inviteCode });
     }
 
-    public async Task<UserInvite?> GetPendingByEmailAsync(string email)
-    {
-        using var connection = _connectionFactory.CreateConnection();
-        return await connection.QueryFirstOrDefaultAsync<UserInvite>(
-            @"SELECT * FROM user_invites
-              WHERE email = @Email
-              AND used = FALSE
-              AND code_validated IS NOT NULL
-              AND code_validated > NOW() - INTERVAL '15 minutes'",
-            new { Email = email });
-    }
-
     public async Task<bool> MarkCodeValidatedAsync(int id)
     {
         using var connection = _connectionFactory.CreateConnection();

@@ -18,10 +18,15 @@ public class UserInvitesService : IUserInvitesService
         return await _userInvitesRepository.GetByEmailAndCodeAsync(email, inviteCode);
     }
 
-    public async Task<bool> HasPendingValidationAsync(string email)
+    public async Task<bool> GetIsPendingAsync(int id)
     {
-        var invite = await _userInvitesRepository.GetPendingByEmailAsync(email);
-        return invite != null;
+        var invite = await _userInvitesRepository.GetByIdAsync(id);
+        if (invite == null)
+            return false;
+
+        return !invite.Used
+            && invite.CodeValidated != null
+            && invite.CodeValidated > DateTime.UtcNow.AddMinutes(-15);
     }
 
     public async Task<bool> MarkCodeValidatedAsync(int id)

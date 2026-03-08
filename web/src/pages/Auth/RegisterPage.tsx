@@ -27,22 +27,26 @@ const RegisterPage = () => {
       });
 
       if (!response.ok) {
-        setError("Sorry, you you can't register with that email and invite code. Try again!");
+        setError("Sorry, you can't register with that email and invite code. Try again!");
         return;
       }
+
+      const data = await response.json();
 
       // Store registration data for after Auth0 callback
       sessionStorage.setItem('pendingRegistration', JSON.stringify({
         displayName,
         email,
         inviteCode,
+        inviteId: data.id,
       }));
 
-      // Redirect to Auth0 signup with email pre-filled
+      // Redirect to Auth0 signup with email and invite ID
       loginWithRedirect({
         authorizationParams: {
           screen_hint: 'signup',
           login_hint: email,
+          'xt-invite_id': data.id.toString(),
         },
       });
     } catch {
