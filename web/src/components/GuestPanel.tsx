@@ -2,7 +2,12 @@ import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from '@/components/ui/button';
 
-const LandingPage = () => {
+interface GuestPanelProps {
+  title: string;
+  subtitle: string;
+}
+
+const GuestPanel = ({ title, subtitle }: GuestPanelProps) => {
   const { loginWithRedirect } = useAuth0();
 
   const handleSignIn = () => {
@@ -14,9 +19,9 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-8">
-      <h1 className="text-4xl font-bold mb-4 tracking-wide" style={{ fontFamily: "'Libre Baskerville', serif" }}>Welcome to Budgeteer</h1>
-      <p className="text-gray-500 mb-8 whitespace-nowrap text-base md:text-lg">Track your monthly budgets in real time.</p>
+    <div className="flex-1 flex flex-col items-center justify-center p-8">
+      <h1 className="text-4xl font-bold mb-4 tracking-wide" style={{ fontFamily: "'Libre Baskerville', serif" }}>{title}</h1>
+      <p className="text-gray-500 mb-8 whitespace-nowrap text-base md:text-lg">{subtitle}</p>
 
       <div className="flex gap-4">
         <Link to="/register">
@@ -30,4 +35,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default GuestPanel;

@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LandingPage from './pages/LandingPage';
+import LandingPage from './pages/Public/LandingPage';
 import RegisterPage from './pages/Auth/RegisterPage';
 import AuthCallback from './pages/Auth/AuthCallback';
 import HomePage from './pages/HomePage';
-import UserNotFoundPage from './pages/UserNotFoundPage';
+import UserNotFoundPage from './pages/Public/UserNotFoundPage';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/routes/ProtectedRoute';
 import PublicRoute from './components/routes/PublicRoute';
