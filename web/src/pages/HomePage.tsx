@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import type { RootState } from '@/store';
 
 const HomePage = () => {
