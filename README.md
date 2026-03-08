@@ -42,7 +42,7 @@ psql -d postgres -c "GRANT ALL PRIVILEGES ON DATABASE budgeting_app TO budgeting
 
 # Run migrations
 psql -d budgeting_app -f Server/Sql/001_InitialSchema.sql
-psql -d budgeting_app -f Server/Sql/002_SignUpInvites.sql
+psql -d budgeting_app -f Server/Sql/002_UserInvites.sql
 
 # Grant table permissions
 psql -d budgeting_app -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO budgeting_app_admin; GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO budgeting_app_admin; GRANT ALL ON SCHEMA public TO budgeting_app_admin;"
@@ -89,6 +89,19 @@ App runs at http://localhost:5173
 - **Backend:** .NET 8 API with Dapper (in `/Server`)
 - **Database:** PostgreSQL
 - **Authentication:** Auth0 (OAuth 2.0 / OIDC)
+
+## Auth0 Pre-User Registration Action
+
+Sign-ups are enabled in Auth0 for the registration flow to work, but this would allow anyone to bypass the app's RegisterPage and sign up directly through Auth0's widget. A Pre-User Registration Action prevents this.
+
+**How it works:**
+1. User submits RegisterPage → backend validates invite and sets `code_validated` timestamp, returns invite `id`
+2. Frontend passes `xt-invite_id` to Auth0 via custom params
+3. Auth0 Action (`auth0/actions/preUserRegistration/checkUserInvite.js`) calls `GET /api/auth/user-invites/{id}/is-pending`
+4. Backend checks: `!used && code_validated != null && code_validated > now - 15 mins`
+5. If `isPending: true` → registration proceeds; otherwise → blocked
+
+**Result:** Users who go through RegisterPage can register; users who try Auth0 directly are blocked.
 
 ## Project Structure
 
