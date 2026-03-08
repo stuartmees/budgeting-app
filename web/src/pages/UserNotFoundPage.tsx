@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from '@/components/ui/button';
 
-const UserNotFound = () => {
+const UserNotFoundPage = () => {
   const { loginWithRedirect } = useAuth0();
 
   const handleSignIn = () => {
@@ -30,4 +30,4 @@ const UserNotFound = () => {
   );
 };
 
-export default UserNotFound;
+export default UserNotFoundPage;
