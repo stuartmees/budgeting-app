@@ -41,10 +41,7 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> LookupUser([FromBody] LookupUserRequest request)
     {
         var existingUser = await _usersService.GetByAuth0IdAsync(request.Auth0Id);
-        if (existingUser != null)
-        {
-            return Ok(new { user = existingUser });
-        }
+        if (existingUser != null) return Ok(new { user = existingUser });
 
         return NotFound(new { error = "User not found. Please register with an invite code." });
     }
