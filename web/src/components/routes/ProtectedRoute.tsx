@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoadingIndicator from '../ui/LoadingIndicator';
+import { LANDING } from '../../constants/routes'
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -10,7 +11,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/" replace />;
+    return <Navigate to={LANDING} replace />;
   }
 
   return <>{children}</>;

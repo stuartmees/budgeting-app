@@ -2,8 +2,9 @@ import GuestPanel from '@/components/GuestPanel';
 
 const UserNotFoundPage = () => (
     <GuestPanel
-      title="Sorry, we can't find you in our system."
-      subtitle="Check your sign in details and try again or register with us!"
+      title="Budgeteer"
+      subtitle="Sorry, we can't find you in our system."
+      description="Check your sign in details and try again or register with us."
     />
   );
 

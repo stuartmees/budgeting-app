@@ -7,17 +7,18 @@ import UserNotFoundPage from './pages/Public/UserNotFoundPage';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/routes/ProtectedRoute';
 import PublicRoute from './components/routes/PublicRoute';
+import { LANDING, HOME, REGISTER, CALLBACK, USER_NOT_FOUND } from './constants/routes';  
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<PublicRoute><LandingPage /></PublicRoute>} />
+        <Route path={LANDING} element={<PublicRoute><LandingPage /></PublicRoute>} />
+        <Route path={USER_NOT_FOUND} element={<PublicRoute><UserNotFoundPage /></PublicRoute>} />
         <Route element={<Layout />}>
-          <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
-          <Route path="/callback" element={<AuthCallback />} />
-          <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
-          <Route path="/not-found" element={<PublicRoute><UserNotFoundPage /></PublicRoute>} />
+          <Route path={REGISTER}element={<PublicRoute><RegisterPage /></PublicRoute>} />
+          <Route path={CALLBACK} element={<AuthCallback />} />
+          <Route path={HOME} element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
         </Route>
       </Routes>
     </BrowserRouter>

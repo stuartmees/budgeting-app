@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux';
 import type { AppDispatch } from '@/store';
 import { setUser } from '@/store/slices/userSlice';
 import LoadingIndicator from '@/components/ui/LoadingIndicator';
+import { USERS, AUTH_USERS_LOOKUP } from '../../constants/api'
+import { HOME, USER_NOT_FOUND, LANDING } from '../../constants/routes'
 
 const AuthCallback = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -16,7 +18,7 @@ const AuthCallback = () => {
     if (isLoading) return;
 
     if (!isAuthenticated || !user) {
-      navigate('/');
+      navigate(LANDING);
       return;
     }
 
@@ -29,7 +31,7 @@ const AuthCallback = () => {
           // New user registration flow
           const { displayName, email, inviteCode } = JSON.parse(pendingReg);
 
-          const response = await fetch('/api/users', {
+          const response = await fetch(USERS, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -50,10 +52,10 @@ const AuthCallback = () => {
           dispatch(setUser(data.user));
           sessionStorage.setItem('currentUser', JSON.stringify(data.user));
           sessionStorage.removeItem('pendingRegistration');
-          navigate('/home');
+          navigate(HOME);
         } else {
           // Existing user sign-in flow
-          const response = await fetch('/api/auth/users/lookup', {
+          const response = await fetch(AUTH_USERS_LOOKUP, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -65,14 +67,14 @@ const AuthCallback = () => {
           if (!response.ok) {
             // Edge case: user authenticated with Auth0 but doesn't exist in our DB
             // (e.g., deleted user, failed registration, or direct Auth0 API call)
-            navigate('/not-found');
+            navigate(USER_NOT_FOUND);
             return;
           }
 
           const data = await response.json();
           dispatch(setUser(data.user));
           sessionStorage.setItem('currentUser', JSON.stringify(data.user));
-          navigate('/home');
+          navigate(HOME);
         }
       } catch {
         setError('Something went wrong');

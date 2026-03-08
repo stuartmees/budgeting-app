@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { AUTH_USER_INVITES_VALIDATION, USERS, AUTH_USERS_LOOKUP } from '../../constants/api'
+import { LANDING } from '../../constants/routes'
 
 const RegisterPage = () => {
   const { loginWithRedirect } = useAuth0();
@@ -20,7 +22,7 @@ const RegisterPage = () => {
     }
 
     try {
-      const response = await fetch('/api/auth/user-invites/validation', {
+      const response = await fetch(AUTH_USER_INVITES_VALIDATION, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, inviteCode }),
@@ -110,7 +112,7 @@ const RegisterPage = () => {
           </button>
         </p>
         <p className="text-sm text-center">
-          <Link to="/" className="text-primary hover:text-primary/80 cursor-pointer">
+          <Link to={LANDING} className="text-primary hover:text-primary/80 cursor-pointer">
             Back
           </Link>
         </p>

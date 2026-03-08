@@ -10,6 +10,7 @@ const Banner = () => {
 
   const handleLogout = () => {
     sessionStorage.removeItem('currentUser');
+    sessionStorage.removeItem('pendingRegistration');
     dispatch(clearUser());
     logout({ logoutParams: { returnTo: window.location.origin } });
   };
