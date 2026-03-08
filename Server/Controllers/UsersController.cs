@@ -21,8 +21,7 @@ public class UsersController : ControllerBase
     public async Task<IActionResult> GetById(int id)
     {
         var user = await _usersService.GetByIdAsync(id);
-        if (user == null)
-            return NotFound(new { error = "User not found" });
+        if (user == null) return NotFound(new { error = "User not found" });
 
         return Ok(user);
     }
@@ -32,10 +31,8 @@ public class UsersController : ControllerBase
     {
         // Check if user already exists
         var existingUser = await _usersService.GetByAuth0IdAsync(request.Auth0Id);
-        if (existingUser != null)
-        {
+        if (existingUser != null) 
             return Ok(new { user = existingUser, isNew = false });
-        }
 
         // Validate invite again (already validated in frontend for UX, but backend must re-check
         // for security - can't trust frontend, and invite may have been used/expired since)
