@@ -21,16 +21,16 @@ const GuestPanel = ({ description, subtitle, title }: GuestPanelProps) => {
   };
 
   return (
-    <div className="min-h-screen flex-1 flex flex-col items-center justify-center p-8">
+    <div className="min-h-screen container-position-central">
       <h1 className="text-4xl font-bold mb-4 tracking-wide font-heading">{title}</h1>
       <p className={`text-gray-500 ${description ? 'mb-2' : 'mb-8'} whitespace-nowrap text-base md:text-lg`}>{subtitle}</p>
       {description && <p className="text-gray-500 font-light mb-8 whitespace-nowrap text-base md:text-lg">{description}</p>}
 
       <div className="flex gap-4">
         <Link to={REGISTER}>
-          <Button className="hover:bg-primary/80 text-sm md:text-base font-normal tracking-normal">Register</Button>
+          <Button className="hover:bg-primary/80 btn-text">Register</Button>
         </Link>
-        <Button variant="outline" onClick={handleSignIn} className="text-primary border-primary/50 hover:bg-primary/15 hover:text-primary text-sm md:text-base font-normal tracking-normal">
+        <Button variant="outline" onClick={handleSignIn} className="text-primary border-primary/50 hover:bg-primary/15 hover:text-primary btn-text">
           Sign In
         </Button>
       </div>

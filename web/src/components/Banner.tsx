@@ -18,7 +18,7 @@ const Banner = () => {
   return (
     <div className="w-full bg-primary py-4 px-8 flex items-center relative">
       {user && (
-        <button onClick={handleLogout} className="text-white text-sm md:text-base font-normal tracking-normal absolute left-8 hover:text-white/80">
+        <button onClick={handleLogout} className="text-white btn-text absolute left-8 hover:text-white/80">
           Log out
         </button>
       )}

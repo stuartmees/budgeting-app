@@ -131,4 +131,16 @@
            border-transparent focus-visible:ring-0 focus-visible:border-gray-400
            text-sm md:text-[0.925rem];
   }
+
+  .btn-text {
+    @apply text-sm md:text-base font-normal tracking-normal;
+  }
+
+  .container-position-central {
+    @apply flex-1 flex flex-col items-center justify-center p-8;
+  }
+
+  .inline-link-text {
+    @apply text-primary hover:text-primary/80 cursor-pointer;
+  }
 }

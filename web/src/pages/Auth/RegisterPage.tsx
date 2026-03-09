@@ -57,7 +57,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-8">
+    <div className="container-position-central">
       <h2 className="text-4xl font-bold mb-6 tracking-wide font-heading">Register</h2>
       <p className="text-gray-500 text-center mt-6 mb-4 whitespace-nowrap text-base md:text-lg">
         Enter the email address and invite code you were invited with.
@@ -98,7 +98,7 @@ const RegisterPage = () => {
           </div>
         )}
 
-        <Button onClick={handleValidateInvite} className="w-full hover:bg-primary/80 mt-6 text-sm md:text-base font-normal tracking-normal">
+        <Button onClick={handleValidateInvite} className="w-full hover:bg-primary/80 mt-6 btn-text">
           Continue
         </Button>
 
@@ -106,13 +106,13 @@ const RegisterPage = () => {
           Already have an account?&nbsp;&nbsp;
           <button
             onClick={() => loginWithRedirect({ authorizationParams: { screen_hint: 'login' } })}
-            className="text-primary hover:text-primary/80 cursor-pointer"
+            className="inline-link-text"
           >
             Sign In
           </button>
         </p>
         <p className="text-sm text-center">
-          <Link to={LANDING} className="text-primary hover:text-primary/80 cursor-pointer">
+          <Link to={LANDING} className="inline-link-text">
             Back
           </Link>
         </p>
