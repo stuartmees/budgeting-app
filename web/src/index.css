@@ -5,6 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+    --font-heading: 'Libre Baskerville', serif;
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
@@ -122,4 +123,12 @@
     @apply bg-background text-foreground;
     font-family: 'Ubuntu', sans-serif;
     }
+}
+
+@layer components {
+  .input-form {
+    @apply text-center bg-white placeholder:text-[#b5bbc3] placeholder:font-extralight
+           border-transparent focus-visible:ring-0 focus-visible:border-gray-400
+           text-sm md:text-[0.925rem];
+  }
 }

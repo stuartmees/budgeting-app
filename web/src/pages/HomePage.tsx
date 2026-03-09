@@ -18,7 +18,7 @@ const HomePage = () => {
     !!user &&
       <>
       <div className="flex-1 flex flex-col items-center justify-center p-8">
-        <h2 className="text-3xl font-bold mb-8" style={{ fontFamily: "'Libre Baskerville', serif" }}>
+        <h2 className="text-3xl font-bold mb-8 font-heading">
           Hi, {user?.displayName || 'User'}!
         </h2>
 

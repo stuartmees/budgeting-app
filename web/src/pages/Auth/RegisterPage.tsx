@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { AUTH_USER_INVITES_VALIDATION, USERS, AUTH_USERS_LOOKUP } from '../../constants/api'
+import { AUTH_USER_INVITES_VALIDATION } from '../../constants/api'
 import { LANDING } from '../../constants/routes'
 
 const RegisterPage = () => {
@@ -58,7 +58,7 @@ const RegisterPage = () => {
 
   return (
     <div className="flex-1 flex flex-col items-center justify-center p-8">
-      <h2 className="text-4xl font-bold mb-6 tracking-wide" style={{ fontFamily: "'Libre Baskerville', serif" }}>Register</h2>
+      <h2 className="text-4xl font-bold mb-6 tracking-wide font-heading">Register</h2>
       <p className="text-gray-500 text-center mt-6 mb-4 whitespace-nowrap text-base md:text-lg">
         Enter the email address and invite code you were invited with.
       </p>
@@ -69,14 +69,14 @@ const RegisterPage = () => {
           placeholder="Email . . ."
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="text-center bg-white placeholder:text-[#b5bbc3] placeholder:font-extralight border-transparent focus-visible:ring-0 focus-visible:border-gray-400 text-sm md:text-[0.925rem]"
+          className="input-form"
         />
         <Input
           type="text"
           placeholder="Invite code . . ."
           value={inviteCode}
           onChange={(e) => setInviteCode(e.target.value)}
-          className="text-center bg-white placeholder:text-[#b5bbc3] placeholder:font-extralight border-transparent focus-visible:ring-0 focus-visible:border-gray-400 text-sm md:text-[0.925rem]"
+          className="input-form"
         />
 
         <div className="flex justify-center w-full mt-6">
@@ -89,7 +89,7 @@ const RegisterPage = () => {
           placeholder="Display name . . ."
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
-          className="text-center bg-white placeholder:text-[#b5bbc3] placeholder:font-extralight border-transparent focus-visible:ring-0 focus-visible:border-gray-400 text-sm md:text-[0.925rem]"
+          className="input-form"
         />
 
         {error && (
