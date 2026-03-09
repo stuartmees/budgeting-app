@@ -93,7 +93,7 @@ const AuthCallback = () => {
       <div>
         <h1>Error</h1>
         <p style={{ color: 'red' }}>{error}</p>
-        <a href="/">Go back</a>
+        <a href={LANDING}>Go back</a>
       </div>
     );
   }

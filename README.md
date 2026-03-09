@@ -90,18 +90,33 @@ App runs at http://localhost:5173
 - **Database:** PostgreSQL
 - **Authentication:** Auth0 (OAuth 2.0 / OIDC)
 
-## Auth0 Pre-User Registration Action
+## Invite-Only Registration
 
-Sign-ups are enabled in Auth0 for the registration flow to work, but this would allow anyone to bypass the app's RegisterPage and sign up directly through Auth0's widget. A Pre-User Registration Action prevents this.
+This app uses invite-only registration. Users cannot sign up on their own—they must receive an invite from an administrator, validate the invite code on the app's RegisterPage, and then complete sign-up through Auth0's widget.
 
-**How it works:**
-1. User submits RegisterPage → backend validates invite and sets `code_validated` timestamp, returns invite `id`
-2. Frontend passes `xt-invite_id` to Auth0 via custom params
-3. Auth0 Action (`auth0/actions/preUserRegistration/checkUserInvite.js`) calls `GET /api/auth/user-invites/{id}/is-pending`
-4. Backend checks: `!used && code_validated != null && code_validated > now - 15 mins`
-5. If `isPending: true` → registration proceeds; otherwise → blocked
+### Why invite-only?
 
-**Result:** Users who go through RegisterPage can register; users who try Auth0 directly are blocked.
+The app is designed for controlled access. Only invited users should be able to create accounts, preventing random sign-ups and keeping the user base intentional.
+
+### The challenge
+
+Auth0 must have sign-ups enabled for the registration flow to work. But this creates a problem: anyone could bypass the app's RegisterPage and sign up directly through Auth0's hosted widget, circumventing the invite requirement.
+
+### The solution: Pre-User Registration Action
+
+An Auth0 Action runs before every sign-up attempt and verifies the user came through the app's invite flow:
+
+1. User receives an invite with a unique code
+2. User enters the code on RegisterPage → backend validates it, sets `code_validated` timestamp, returns the invite `id`
+3. Frontend redirects to Auth0 with `xt-invite_id` as a custom parameter
+4. Auth0's Pre-User Registration Action calls `GET /api/auth/user-invites/{id}/is-pending`
+5. Backend checks: invite exists, not used, `code_validated` is set and within 15 minutes
+6. If valid → registration proceeds; if not → Auth0 blocks the sign-up
+
+**Result:** Users who go through RegisterPage with a valid invite can register. Users who try to sign up directly through Auth0 are blocked.
+
+**Auth0 Dashboard location:** Actions → Flows → Pre User Registration
+**Action source:** `auth0/actions/preUserRegistration/checkUserInvite.js`
 
 ## Project Structure
 
@@ -139,7 +154,7 @@ This project stores secrets as **environment variables** injected at runtime:
 A Key Management Service like GCP KMS is designed for **cryptographic key management** - generating, storing, and rotating encryption keys used to encrypt/decrypt data at the application level.
 
 This app doesn't need a separate KMS because:
-- **Okta** handles authentication token signing/validation
+- **Auth0** handles authentication token signing/validation
 - **PostgreSQL** handles data-at-rest encryption
 - **HTTPS** handles transport encryption
 
