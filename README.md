@@ -86,9 +86,20 @@ App runs at http://localhost:5173
 ## Tech Stack
 
 - **Frontend:** React TypeScript + Redux (in `/web`)
+- **Styling:** Tailwind CSS v4 + shadcn/ui
 - **Backend:** .NET 8 API with Dapper (in `/Server`)
 - **Database:** PostgreSQL
 - **Authentication:** Auth0 (OAuth 2.0 / OIDC)
+
+### Custom Styles
+
+Custom styles are defined in `web/src/index.css`:
+
+- `font-heading` - Libre Baskerville serif font for headings
+- `.input-form` - Centered form inputs
+- `.btn-text` - Button text sizing
+- `.container-position-central` - Centered flex container
+- `.inline-link-text` - Text link styling
 
 ## Invite-Only Registration
 
