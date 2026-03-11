@@ -58,3 +58,14 @@ CREATE TABLE week_spends (
 );
 
 CREATE INDEX idx_week_spends_week_id ON week_spends(week_id);
+
+CREATE TABLE user_invites (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    invite_code VARCHAR(255) NOT NULL,
+    created TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    used BOOLEAN NOT NULL DEFAULT FALSE,
+    code_validated TIMESTAMP WITH TIME ZONE DEFAULT NULL
+);
+
+CREATE INDEX idx_user_invites_email ON user_invites(email);
