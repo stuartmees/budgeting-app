@@ -59,7 +59,7 @@ const RegisterPage = () => {
   return (
     <div className="container-position-central">
       <h2 className="text-4xl font-bold mb-6 tracking-wide font-heading">Register</h2>
-      <p className="text-gray-500 text-center mt-6 mb-4 whitespace-nowrap text-base md:text-lg">
+      <p className="text-gray-500 text-center mt-6 mb-4 text-base md:text-lg">
         Enter the email address and invite code you were invited with.
       </p>
 
@@ -79,11 +79,9 @@ const RegisterPage = () => {
           className="input-form"
         />
 
-        <div className="flex justify-center w-full mt-6">
-          <p className="text-gray-500 whitespace-nowrap text-base md:text-lg">
-            Give us a display name you'd like us to refer to you as.
-          </p>
-        </div>
+        <p className="text-gray-500 text-center mt-6 text-base md:text-lg">
+          Give us a display name you'd like us to refer to you as.
+        </p>
         <Input
           type="text"
           placeholder="Display name . . ."
