@@ -85,7 +85,7 @@ const AuthCallback = () => {
   }, [isAuthenticated, isLoading, user, navigate]);
 
   if (isLoading) {
-    return <LoadingIndicator text={'Loading...'}/>;
+    return <LoadingIndicator />;
   }
 
   if (error) {
